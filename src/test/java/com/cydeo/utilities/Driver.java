@@ -29,30 +29,30 @@ public class Driver {
 
         if(driverPool.get() == null){  // if driver/browser was never opened
 
-        String browserType = ConfigurationReader.getProperty("browser");
+            String browserType = ConfigurationReader.getProperty("browser");
 
         /*
         Depending on the browserType our switch statement will determine
         to open specific type of browser/driver
          */
-        switch(browserType){
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                driverPool.set(new ChromeDriver());
-                driverPool.get().manage().window().maximize();
-                driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                break;
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                driverPool.set(new FirefoxDriver());
-                driverPool.get().manage().window().maximize();
-                driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                break;
-        }
+            switch(browserType){
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    driverPool.set(new ChromeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    driverPool.set(new FirefoxDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    break;
+            }
         }
 
-    // Same driver instance will be returned every time we call Driver.getDriver() method
-       return driverPool.get();
+        // Same driver instance will be returned every time we call Driver.getDriver() method
+        return driverPool.get();
 
     }
 
